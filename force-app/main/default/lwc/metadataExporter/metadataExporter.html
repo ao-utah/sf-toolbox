@@ -1,0 +1,91 @@
+<template>
+    <lightning-card title="メタデータエクスポート" icon-name="utility:settings">
+        <div class="slds-m-around_medium">
+
+            <p class="slds-m-bottom_medium">オブジェクトを選択してください（複数選択可）</p>
+
+            <!-- 検索ボックス -->
+            <lightning-input
+                type="search"
+                label="オブジェクト名で絞り込み"
+                placeholder="例: Account, 取引先..."
+                value={searchKeyword}
+                onchange={handleSearch}
+                class="slds-m-bottom_small"
+            ></lightning-input>
+
+            <!-- 全選択・全解除ボタン -->
+            <div class="slds-m-bottom_small">
+                <lightning-button
+                    label="すべて選択"
+                    onclick={handleSelectAll}
+                    class="slds-m-right_x-small"
+                ></lightning-button>
+                <lightning-button
+                    label="すべて解除"
+                    onclick={handleDeselectAll}
+                ></lightning-button>
+            </div>
+
+            <!-- オブジェクト一覧（スクロール） -->
+            <div class="object-list slds-m-bottom_medium">
+                <template if:true={isLoadingObjects}>
+                    <lightning-spinner alternative-text="読み込み中..." size="small"></lightning-spinner>
+                </template>
+                <template if:false={isLoadingObjects}>
+                    <template for:each={filteredObjects} for:item="obj">
+                        <div key={obj.name} class="slds-p-vertical_xx-small">
+                            <lightning-input
+                                type="checkbox"
+                                label={obj.checkboxLabel}
+                                checked={obj.checked}
+                                data-name={obj.name}
+                                onchange={handleCheck}
+                            ></lightning-input>
+                        </div>
+                    </template>
+                </template>
+            </div>
+
+            <!-- 出力ボタン -->
+            <lightning-button
+                label="出力"
+                variant="brand"
+                icon-name="utility:play"
+                onclick={handleOutput}
+                disabled={isOutputDisabled}
+                class="slds-m-bottom_medium"
+            ></lightning-button>
+
+            <!-- 処理中スピナー -->
+            <template if:true={isLoading}>
+                <div class="slds-m-top_small slds-m-bottom_medium">
+                    <lightning-spinner alternative-text="処理中..." size="small"></lightning-spinner>
+                </div>
+            </template>
+
+            <!-- CSV出力結果（native textarea で高さ固定） -->
+            <template if:true={csvOutput}>
+                <div class="slds-form-element slds-m-bottom_small">
+                    <label class="slds-form-element__label">出力結果</label>
+                    <div class="slds-form-element__control">
+                        <textarea class="slds-textarea output-textarea" readonly></textarea>
+                    </div>
+                </div>
+                <lightning-button
+                    label="クリップボードにコピー"
+                    icon-name="utility:copy"
+                    onclick={handleCopy}
+                ></lightning-button>
+            </template>
+
+            <!-- エラーメッセージ -->
+            <template if:true={errorMessage}>
+                <div class="slds-m-top_medium">
+                    <p class="slds-text-color_error">{errorMessage}</p>
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>

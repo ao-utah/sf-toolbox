@@ -2,7 +2,7 @@
   "packageDirectories": [
     {
       "versionName": "ver 0.1",
-      "versionNumber": "0.1.0.NEXT",
+      "versionNumber": "0.2.0.NEXT",
       "path": "force-app",
       "default": true,
       "package": "SF Toolbox",
@@ -10,10 +10,12 @@
     }
   ],
   "name": "sf-toolbox",
-  "namespace": "",
+  "namespace": "sftb",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "62.0",
   "packageAliases": {
-    "SF Toolbox": "0HoIg0000008OJrKAM"
+    "SF Toolbox": "0HoIg0000008OJwKAM",
+    "SF Toolbox@0.1.0-1": "04tIg000000osEiIAI",
+    "SF Toolbox@0.2.0-1": "04tIg000000osEnIAI"
   }
 }

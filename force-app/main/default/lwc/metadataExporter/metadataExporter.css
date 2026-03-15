@@ -1,0 +1,15 @@
+.object-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+.output-textarea {
+    height: 300px;
+    resize: none;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 12px;
+}
