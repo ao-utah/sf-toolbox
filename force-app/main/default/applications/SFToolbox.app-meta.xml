@@ -4,7 +4,7 @@
     <description>Salesforce管理用の便利ツール by Yuta Aoki</description>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>SF Toolbox</label>
+    <label>SFToolbox</label>
     <navType>Standard</navType>
     <tabs>MetadataExporter</tabs>
     <uiType>Lightning</uiType>

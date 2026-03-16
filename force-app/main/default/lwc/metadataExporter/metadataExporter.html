@@ -48,15 +48,23 @@
             </div>
 
             <!-- 出力形式 -->
-            <lightning-radio-group
-                name="outputFormat"
-                label="出力形式"
-                options={formatOptions}
-                value={outputFormat}
-                type="button"
-                onchange={handleFormatChange}
-                class="slds-m-bottom_medium"
-            ></lightning-radio-group>
+            <div class="slds-m-bottom_medium">
+                <p class="slds-form-element__label slds-m-bottom_x-small">出力形式</p>
+                <lightning-button-group>
+                    <lightning-button
+                        label="CSV"
+                        variant={csvVariant}
+                        data-format="csv"
+                        onclick={handleFormatChange}
+                    ></lightning-button>
+                    <lightning-button
+                        label="TSV（表計算ソフト向け）"
+                        variant={tsvVariant}
+                        data-format="tsv"
+                        onclick={handleFormatChange}
+                    ></lightning-button>
+                </lightning-button-group>
+            </div>
 
             <!-- 出力ボタン -->
             <lightning-button

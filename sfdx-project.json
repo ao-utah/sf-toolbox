@@ -5,7 +5,7 @@
       "versionNumber": "0.2.1.NEXT",
       "path": "force-app",
       "default": true,
-      "package": "SF Toolbox",
+      "package": "SFToolbox",
       "versionDescription": ""
     }
   ],
@@ -14,8 +14,8 @@
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "62.0",
   "packageAliases": {
-    "SF Toolbox": "0HoIg0000008OJwKAM",
-    "SF Toolbox@0.1.0-1": "04tIg000000osEiIAI",
-    "SF Toolbox@0.2.0-1": "04tIg000000osEnIAI"
+    "SFToolbox": "0HoIg0000008OJwKAM",
+    "SFToolbox@0.1.0-1": "04tIg000000osEiIAI",
+    "SFToolbox@0.2.0-1": "04tIg000000osEnIAI"
   }
 }

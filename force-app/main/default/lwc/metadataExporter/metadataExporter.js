@@ -65,15 +65,16 @@ export default class MetadataExporter extends LightningElement {
         return this.selectedCount === 0 || this.isLoading;
     }
 
-    get formatOptions() {
-        return [
-            { label: 'CSV', value: 'csv' },
-            { label: 'TSV（表計算ソフト向け）', value: 'tsv' }
-        ];
+    get csvVariant() {
+        return this.outputFormat === 'csv' ? 'brand' : 'neutral';
+    }
+
+    get tsvVariant() {
+        return this.outputFormat === 'tsv' ? 'brand' : 'neutral';
     }
 
     handleFormatChange(event) {
-        this.outputFormat = event.detail.value;
+        this.outputFormat = event.target.dataset.format;
         this.csvOutput = '';
     }
 
