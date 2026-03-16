@@ -3,8 +3,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>sftb:metadataExporter</componentName>
-                <identifier>sftb_metadataExporter</identifier>
+                <componentName>c:metadataExporter</componentName>
+                <identifier>c_metadataExporter</identifier>
             </componentInstance>
         </itemInstances>
         <name>main</name>

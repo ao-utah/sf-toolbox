@@ -37,10 +37,7 @@ Object Name, Object Label, Field Name, Field Label, Data Type
 
 以下の理由により、Object Manager に存在する項目でも出力されないことがあります。
 
-**1. ルックアップ検索条件（Lookup Filter）が設定されている項目**
-複雑なルックアップ検索条件が設定されている参照関係項目は、Salesforce の Apex Describe API（`fields.getMap()`）から返されない場合があります。これは Salesforce プラットフォームの既知の挙動であり、本ツールでは対処できません。
-
-**2. 項目レベルセキュリティ（FLS）で非表示の項目**
+**1. 項目レベルセキュリティ（FLS）で非表示の項目**
 実行ユーザーのプロファイルまたは権限セットで「参照可能」になっていない項目は出力されません。出力したい項目がある場合は、Salesforce 管理者に FLS の設定変更を依頼してください。
 
 ### その他の制限事項

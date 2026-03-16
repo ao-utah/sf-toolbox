@@ -47,6 +47,17 @@
                 </template>
             </div>
 
+            <!-- 出力形式 -->
+            <lightning-radio-group
+                name="outputFormat"
+                label="出力形式"
+                options={formatOptions}
+                value={outputFormat}
+                type="button"
+                onchange={handleFormatChange}
+                class="slds-m-bottom_medium"
+            ></lightning-radio-group>
+
             <!-- 出力ボタン -->
             <lightning-button
                 label="出力"

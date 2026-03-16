@@ -42,14 +42,20 @@ public with sharing class MetadataExportController {
     }
 
     @AuraEnabled
-    public static String generateCsvForObjects(List<String> selectedObjects) {
+    public static String generateCsvForObjects(List<String> selectedObjects, String format) {
         try {
+            Boolean isTsv = format == 'tsv';
+            String delimiter = isTsv ? '\t' : ',';
+
             Map<String, Schema.SObjectType> globalDescribe = Schema.getGlobalDescribe();
-            List<String> csvLines = new List<String>();
-            csvLines.add('Object Name,Object Label,Field Name,Field Label,Data Type');
+            List<String> lines = new List<String>();
+            lines.add(isTsv
+                ? 'Object Name\tObject Label\tField Name\tField Label\tData Type'
+                : 'Object Name,Object Label,Field Name,Field Label,Data Type'
+            );
 
             if (selectedObjects == null || selectedObjects.isEmpty()) {
-                return String.join(csvLines, '\n');
+                return String.join(lines, '\n');
             }
 
             List<String> sorted = new List<String>(selectedObjects);
@@ -67,26 +73,42 @@ public with sharing class MetadataExportController {
                 for (String fieldName : fieldNames) {
                     Schema.DescribeFieldResult fieldDesc = fieldsMap.get(fieldName).getDescribe();
                     if (!fieldDesc.isAccessible()) continue;
-                    csvLines.add(
-                        escape(objDesc.getName()) + ',' +
-                        escape(objDesc.getLabel()) + ',' +
-                        escape(fieldDesc.getName()) + ',' +
-                        escape(fieldDesc.getLabel()) + ',' +
-                        escape(String.valueOf(fieldDesc.getType()))
-                    );
+                    String dataType = fieldDesc.isCalculated() ? 'FORMULA(' + String.valueOf(fieldDesc.getType()) + ')' : String.valueOf(fieldDesc.getType());
+                    if (isTsv) {
+                        lines.add(
+                            escapeTsv(objDesc.getName()) + '\t' +
+                            escapeTsv(objDesc.getLabel()) + '\t' +
+                            escapeTsv(fieldDesc.getName()) + '\t' +
+                            escapeTsv(fieldDesc.getLabel()) + '\t' +
+                            escapeTsv(dataType)
+                        );
+                    } else {
+                        lines.add(
+                            escapeCsv(objDesc.getName()) + ',' +
+                            escapeCsv(objDesc.getLabel()) + ',' +
+                            escapeCsv(fieldDesc.getName()) + ',' +
+                            escapeCsv(fieldDesc.getLabel()) + ',' +
+                            escapeCsv(dataType)
+                        );
+                    }
                 }
             }
-            return String.join(csvLines, '\n');
+            return String.join(lines, '\n');
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
 
-    private static String escape(String value) {
+    private static String escapeCsv(String value) {
         if (value == null) return '';
         if (value.contains(',') || value.contains('"') || value.contains('\n')) {
             return '"' + value.replace('"', '""') + '"';
         }
         return value;
+    }
+
+    private static String escapeTsv(String value) {
+        if (value == null) return '';
+        return value.replace('\t', ' ').replace('\n', ' ');
     }
 }

@@ -4,7 +4,7 @@ private class MetadataExportControllerTest {
     @IsTest
     static void testGenerateCsv_returnsNonNull() {
         Test.startTest();
-        String csv = MetadataExportController.generateCsvForObjects(new List<String>{'Account'});
+        String csv = MetadataExportController.generateCsvForObjects(new List<String>{'Account'}, 'csv');
         Test.stopTest();
 
         System.assertNotEquals(null, csv, 'CSV string should not be null');
@@ -13,7 +13,7 @@ private class MetadataExportControllerTest {
     @IsTest
     static void testGenerateCsv_hasHeaderRow() {
         Test.startTest();
-        String csv = MetadataExportController.generateCsvForObjects(new List<String>{'Account'});
+        String csv = MetadataExportController.generateCsvForObjects(new List<String>{'Account'}, 'csv');
         Test.stopTest();
 
         List<String> lines = csv.split('\n');
@@ -27,7 +27,7 @@ private class MetadataExportControllerTest {
     @IsTest
     static void testGenerateCsv_hasDataRows() {
         Test.startTest();
-        String csv = MetadataExportController.generateCsvForObjects(new List<String>{'Account'});
+        String csv = MetadataExportController.generateCsvForObjects(new List<String>{'Account'}, 'csv');
         Test.stopTest();
 
         List<String> lines = csv.split('\n');
@@ -37,7 +37,7 @@ private class MetadataExportControllerTest {
     @IsTest
     static void testGenerateCsv_dataRowHasFiveColumns() {
         Test.startTest();
-        String csv = MetadataExportController.generateCsvForObjects(new List<String>{'Account'});
+        String csv = MetadataExportController.generateCsvForObjects(new List<String>{'Account'}, 'csv');
         Test.stopTest();
 
         List<String> lines = csv.split('\n');
@@ -56,7 +56,7 @@ private class MetadataExportControllerTest {
     @IsTest
     static void testGenerateCsv_containsAccountIdField() {
         Test.startTest();
-        String csv = MetadataExportController.generateCsvForObjects(new List<String>{'Account'});
+        String csv = MetadataExportController.generateCsvForObjects(new List<String>{'Account'}, 'csv');
         Test.stopTest();
 
         // Object Name は API 名（言語不変）、Field Name も API 名（言語不変）で検証
@@ -109,7 +109,7 @@ private class MetadataExportControllerTest {
     @IsTest
     static void testGenerateCsvForObjects_emptyList() {
         Test.startTest();
-        String csv = MetadataExportController.generateCsvForObjects(new List<String>());
+        String csv = MetadataExportController.generateCsvForObjects(new List<String>(), 'csv');
         Test.stopTest();
 
         System.assertEquals(

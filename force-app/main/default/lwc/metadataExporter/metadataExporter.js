@@ -9,8 +9,7 @@ export default class MetadataExporter extends LightningElement {
     @track isLoading = false;
     @track csvOutput = '';
     @track errorMessage = '';
-    _prevCsvOutput = '';
-
+    @track outputFormat = 'csv';
     connectedCallback() {
         this.loadObjects();
     }
@@ -35,12 +34,9 @@ export default class MetadataExporter extends LightningElement {
 
     // native textarea は template binding できないため renderedCallback で値をセット
     renderedCallback() {
-        if (this.csvOutput !== this._prevCsvOutput) {
-            const ta = this.template.querySelector('.output-textarea');
-            if (ta) {
-                ta.value = this.csvOutput;
-                this._prevCsvOutput = this.csvOutput;
-            }
+        const ta = this.template.querySelector('.output-textarea');
+        if (ta) {
+            ta.value = this.csvOutput;
         }
     }
 
@@ -67,6 +63,18 @@ export default class MetadataExporter extends LightningElement {
 
     get isOutputDisabled() {
         return this.selectedCount === 0 || this.isLoading;
+    }
+
+    get formatOptions() {
+        return [
+            { label: 'CSV', value: 'csv' },
+            { label: 'TSV（表計算ソフト向け）', value: 'tsv' }
+        ];
+    }
+
+    handleFormatChange(event) {
+        this.outputFormat = event.detail.value;
+        this.csvOutput = '';
     }
 
     handleSearch(event) {
@@ -101,11 +109,12 @@ export default class MetadataExporter extends LightningElement {
             .filter((obj) => obj.checked)
             .map((obj) => obj.name);
 
+        this._allObjects = this._allObjects.map(obj => ({ ...obj }));
         this.isLoading = true;
         this.csvOutput = '';
         this.errorMessage = '';
 
-        generateCsvForObjects({ selectedObjects })
+        generateCsvForObjects({ selectedObjects, format: this.outputFormat })
             .then((result) => {
                 this.csvOutput = result;
             })
