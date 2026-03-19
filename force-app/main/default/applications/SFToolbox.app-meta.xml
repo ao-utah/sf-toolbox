@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>MetadataExporter</defaultLandingTab>
+    <description>Salesforce管理用の便利ツール by Yuta Aoki</description>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>SFToolbox</label>
+    <navType>Standard</navType>
+    <tabs>MetadataExporter</tabs>
+    <uiType>Lightning</uiType>
+    <formFactors>Large</formFactors>
+</CustomApplication>
