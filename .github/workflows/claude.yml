@@ -11,12 +11,12 @@ on:
 permissions:
   contents: read
   pull-requests: write
-  issues: write
-  id-token: write
 
 jobs:
   claude-review:
     runs-on: ubuntu-latest
+    # ボットの投稿による無限ループを防止
+    if: github.actor != 'github-actions[bot]' && github.actor != 'copilot-pull-request-reviewer[bot]'
     steps:
       - uses: actions/checkout@v4
 
@@ -24,5 +24,5 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          direct_prompt: |
-            Please review this pull request following the guidelines in CLAUDE.md.
+          # pull_request イベントのみ自動レビュー。コメントイベントは @claude メンションで起動
+          direct_prompt: ${{ github.event_name == 'pull_request' && 'Please review this pull request following the guidelines in CLAUDE.md.' || '' }}
