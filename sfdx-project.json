@@ -1,8 +1,8 @@
 {
   "packageDirectories": [
     {
-      "versionName": "ver 0.2.1",
-      "versionNumber": "0.2.1.NEXT",
+      "versionName": "ver 1.0.0",
+      "versionNumber": "1.0.0.NEXT",
       "path": "force-app",
       "default": true,
       "package": "SFToolbox",
