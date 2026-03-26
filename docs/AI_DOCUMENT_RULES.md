@@ -80,6 +80,39 @@ Add commit rules to AI_DOCUMENT_RULES.md
 
 ---
 
-## 4. （予約：今後のルール追加用）
+## 4. ブランチ運用ルール
+
+AIアシスタントが作業ブランチを作成・利用する際は以下のルールに従うこと。
+
+### 4.1 ブランチ命名規則
+
+| 種別 | プレフィックス | 例 |
+|------|--------------|-----|
+| 新機能追加 | `feature/` | `feature/add-tsv-export` |
+| バグ修正 | `fix/` | `fix/apex-heap-limit-error` |
+| ドキュメント更新 | `docs/` | `docs/update-readme-v1` |
+| リファクタリング | `refactor/` | `refactor/metadata-controller` |
+| リリース | `release/` | `release/v1.0.0` |
+| 緊急修正 | `hotfix/` | `hotfix/permission-set-error` |
+
+- ブランチ名は**英語・小文字・ハイフン区切り**
+- 作業内容が一目でわかる名前にする
+
+### 4.2 ブランチの作成タイミング
+
+- 作業開始前に必ず `main` から新しいブランチを切る
+- 既存のブランチに直接コミットしないように注意する
+- 作業ブランチは作業内容ごとに1つ作成する
+
+```bash
+# 例: main から feature ブランチを切る
+git checkout main
+git pull origin main
+git checkout -b feature/your-feature-name
+```
+
+---
+
+## 5. （予約：今後のルール追加用）
 
 <!-- 新しいルールはここに追記してください -->

@@ -1,4 +1,4 @@
-# SF Toolbox V1 リリース・検証手順書
+# SF Toolbox リリース・検証手順書
 
 ---
 
