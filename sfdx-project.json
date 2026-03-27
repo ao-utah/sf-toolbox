@@ -1,8 +1,8 @@
 {
   "packageDirectories": [
     {
-      "versionName": "ver 1.0.0",
-      "versionNumber": "1.0.0.NEXT",
+      "versionName": "ver 1.1.0",
+      "versionNumber": "1.1.0.NEXT",
       "path": "force-app",
       "default": true,
       "package": "SFToolbox",
@@ -16,6 +16,7 @@
   "packageAliases": {
     "SFToolbox": "0HoIg0000008OJwKAM",
     "SFToolbox@0.1.0-1": "04tIg000000osEiIAI",
-    "SFToolbox@0.2.0-1": "04tIg000000osEnIAI"
+    "SFToolbox@0.2.0-1": "04tIg000000osEnIAI",
+    "SFToolbox@1.0.0-1": "04tIg000000osJKIAY"
   }
 }
