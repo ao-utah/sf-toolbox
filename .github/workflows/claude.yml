@@ -24,5 +24,6 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          disallowed_tools: "Edit,Write,Bash,computer"
           # pull_request イベントのみ自動レビュー。コメントイベントは @claude メンションで起動
           direct_prompt: ${{ github.event_name == 'pull_request' && 'Please review this pull request following the guidelines in CLAUDE.md.' || '' }}
